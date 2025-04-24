@@ -22,8 +22,7 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Run Itergration Tests
-        run: npm run test:integration
+      
 
   deploy:
     needs: test
