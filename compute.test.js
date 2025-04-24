@@ -2,7 +2,7 @@ const request = require('supertest');
 const { app } = require('./index'); // Ensure correct import from index.js
 const { compute } = require('./compute');
 
-describe('classifyTriangle: Required input conditions -  See readme for more details', () => {
+describe('compute: Tests each operation of the calculator', () => {
     test('should return Passed for addition', () => {
       expect(compute(2, 4, '+')).toBe(6);
     });
