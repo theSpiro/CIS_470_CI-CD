@@ -23,7 +23,7 @@ describe('classifyTriangle: Required input conditions -  See readme for more det
     
 
     test('should return Cannot Divide by 0 for division', () => {
-      expect(compute(4, 0, '/')).toBe('Cannot Divide By 0');
+      expect(compute(4, 0, '/')).toBe('Cannot divide by 0');
       // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
 
