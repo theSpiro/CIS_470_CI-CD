@@ -1,31 +1,39 @@
 
-const  {classifyTriangle}  = require('./classifyTriangle');
+const  {compute}  = require('./compute');
 
 describe('classifyTriangle: Required input conditions -  See readme for more details', () => {
-    test('should classify an Equilateral triangle', () => {
-      expect(classifyTriangle(10, 10, 10)).toBe('Equilateral');
+    test('should return Passed for addition', () => {
+      expect(compute(2, 4, '+')).toBe(6);
       // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
   
-    test('should classify an Isosceles triangle', () => {
-      expect(classifyTriangle(10, 10, 5)).toBe('Isosceles');
-    // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
-    });
+    
   
-    test('should classify a Scalene triangle', () => {
-      expect(classifyTriangle(10, 12, 14)).toBe('Scalene');
+    test('should return Passed for subtraction', () => {
+      expect(checkSubtraction(7, 2, '-')).toBe(5);
       // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
 
   
-    test('should return error for invalid inputs', () => {
-      expect(classifyTriangle(0, 10, 10)).toBe('Error: Input conditions C1, C2, or C3 failed.');
-        // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
-    });
-  
-    test('should return "Not a Triangle" for invalid triangle sides', () => {
-      expect(classifyTriangle(1, 2, 3)).toBe('Not a Triangle');
+    test('should return Passed for division', () => {
+      expect(checkDivsion(4, 2, '/')).toBe(2);
       // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
+
+    
+
+    test('should return Cannot Divide by 0 for division', () => {
+      expect(checkDivsion(4, 0, '/')).toBe('Cannot Divide By 0');
+      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
+    });
+
+    test('should return Passed for mutiplication', () => {
+      expect(checkMutiplication(4, 2, '*')).toBe(8);
+      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
+    });
+
+    
+
+
   });
   

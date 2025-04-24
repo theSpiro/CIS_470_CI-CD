@@ -119,23 +119,31 @@
     function clearDisplay() {
       document.getElementById('display').value = '';
     }
+  
 
-  function calculate() {
-  try {
-    const expression = document.getElementById('display').value;
-    const result = eval(expression);
+   async function calculate() {
+      const expression = document.getElementById('display').value;
+      const match = expression.match(/(\d+\.?\d*)\s*([\+\-\*\/])\s*(\d+\.?\d*)/);
 
-    if (result === Infinity || result === -Infinity) {
-      document.getElementById('display').value = 'Cannot divide by 0';
-    } else if (isNaN(result)) {
-      document.getElementById('display').value = 'Invalid';
-    } else {
-      document.getElementById('display').value = result;
+      if (!match) {
+        document.getElementById('display').value = 'Invalid';
+        return;
+      }
+
+      const num1 = parseFloat(match[1]);
+      const operator = match[2];
+      const num2 = parseFloat(match[3]);
+
+      fetch('/compute',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({num1, num2, operator})
+      })
+      const data = await response.json();
+      document.getElementById('display').value = data.result;
     }
-  } catch {
-    document.getElementById('display').value = 'Error';
-  }
-}
   </script>
 
 </body>

@@ -3,7 +3,7 @@ const serverless = require('serverless-http');
 
 const app = express();
 
-const { classifyTriangle } = require('./classifyTriangle');
+const { compute } = require('./compute');
 
 app.use(express.json());
 
@@ -11,13 +11,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-app.get('/default/CIS470-Activity-6', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+app.get('/default/CIS_470_CI-CD', (req, res) => {
+    res.sendFile(__dirname + '/public/calculator.html');
 })
 
-app.post('/default/CIS470-Activity-6/check-triangle', (req, res) => {
-    const { side1, side2, side3 } = req.body;
-    const result = classifyTriangle(side1,side2,side3);
+app.post('/default/CIS_470_CI-CD/compute', (req, res) => {
+    const { num1, num2, operator } = req.body;
+    const result = compute(num1,num2,operator);
     res.json({ result });
 })
 
