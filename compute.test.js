@@ -1,7 +1,7 @@
 
 const  {compute}  = require('./compute');
 
-describe('classifyTriangle: Required input conditions -  See readme for more details', () => {
+describe('compute: Tests each operation of the calculator', () => {
     test('should return Passed for addition', () => {
       expect(compute(2, 4, '+')).toBe(6);
       // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
@@ -33,7 +33,6 @@ describe('classifyTriangle: Required input conditions -  See readme for more det
     });
 
     
-
 
   });
   
