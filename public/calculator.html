@@ -112,17 +112,7 @@
   </div>
 
   <script>
-    function appendValue(value) {
-      document.getElementById('display').value += value;
-    }
-
-    function clearDisplay() {
-      document.getElementById('display').value = '';
-    }
-  
-
-   async function calculate() {
-      const expression = document.getElementById('display').value;
+     const expression = document.getElementById('display').value;
       const match = expression.match(/(\d+\.?\d*)\s*([\+\-\*\/])\s*(\d+\.?\d*)/);
 
       if (!match) {
@@ -143,7 +133,37 @@
       })
       const data = await response.json();
       document.getElementById('display').value = data.result;
+
+  </script>
+
+  <script>
+    function appendValue(value) {
+      document.getElementById('display').value += value;
     }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+  
+
+   function calculate() {
+      try {
+      const expression = document.getElementById('display').value;
+      const result = eval(expression);
+
+      if (result === Infinity || result === -Infinity) {
+        document.getElementById('display').value = 'Cannot divide by 0';
+      } else if (isNaN(result)) {
+        document.getElementById('display').value = 'Invalid';
+      } else {
+        document.getElementById('display').value = result;
+      }
+    } catch {
+      document.getElementById('display').value = 'Error';
+  }
+  }
+    
+    
   </script>
 
 </body>
