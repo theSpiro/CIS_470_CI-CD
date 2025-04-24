@@ -1,39 +1,41 @@
-
-const  {compute}  = require('./compute');
+const request = require('supertest');
+const { app } = require('./index'); // Ensure correct import from index.js
+const { compute } = require('./compute');
 
 describe('classifyTriangle: Required input conditions -  See readme for more details', () => {
     test('should return Passed for addition', () => {
       expect(compute(2, 4, '+')).toBe(6);
-      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
-  
-    
-  
+
     test('should return Passed for subtraction', () => {
       expect(compute(7, 2, '-')).toBe(5);
-      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
 
-  
     test('should return Passed for division', () => {
       expect(compute(4, 2, '/')).toBe(2);
-      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
-
-    
 
     test('should return Cannot Divide by 0 for division', () => {
       expect(compute(4, 0, '/')).toBe('Cannot divide by 0');
-      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
 
-    test('should return Passed for mutiplication', () => {
+    test('should return Passed for multiplication', () => {
       expect(compute(4, 2, '*')).toBe(8);
-      // add more test cases based on your requirements and Boundary Value Analysis + Equivalence Partitioning
     });
 
+    test('GET /default/CIS_470_CI-CD returns calculator HTML page', async () => {
+      const res = await request(app).get('/default/CIS_470_CI-CD');
+      expect(res.statusCode).toBe(200);
+      expect(res.text).toContain('<html');
+    });
+
+    test('POST /default/CIS_470_CI-CD/compute performs calculation', async () => {
+      const res = await request(app)
+        .post('/default/CIS_470_CI-CD/compute')
+        .send({ num1: 10, num2: 5, operator: '+' });
     
-
-
-  });
+      expect(res.statusCode).toBe(200);
+      expect(res.body).toHaveProperty('result', 15);
+    });
+})
   
